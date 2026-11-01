@@ -21,4 +21,4 @@ jobs:
             Cursor Cores.exe
             tests/verificacao-persistencia.txt
             docs/imagens/*.png
-            verificacao/tamanhos-windows.txt
+            verificacao/*.txt

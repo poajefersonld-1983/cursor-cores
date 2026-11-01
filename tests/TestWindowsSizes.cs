@@ -18,7 +18,7 @@ class TestWindowsSizes {
  [DllImport("gdi32.dll")] static extern bool DeleteObject(IntPtr h);
  static void CheckNative(IntPtr h,int size,string name){
   IconInfo info;Assert(GetIconInfo(h,out info),"GetIconInfo "+name);
-  try{BitmapInfo bitmap;IntPtr image=info.color!=IntPtr.Zero?info.color:info.mask;Assert(GetObject(image,Marshal.SizeOf(typeof(BitmapInfo)),out bitmap)>0,"GetObject "+name);Assert(bitmap.width==size,"Largura carregada "+name);Assert(bitmap.height==(info.color!=IntPtr.Zero?size:size*2),"Altura carregada "+name);}
+  try{BitmapInfo bitmap;IntPtr image=info.color!=IntPtr.Zero?info.color:info.mask;Assert(GetObject(image,Marshal.SizeOf(typeof(BitmapInfo)),out bitmap)>0,"GetObject "+name);Assert(bitmap.width==size,"Largura carregada "+name);Assert((bool)typeof(CursorCores).GetMethod("HasGuardSize",S).Invoke(null,new object[]{h,size}),"Monitor reconhece tamanho "+size);Assert(!(bool)typeof(CursorCores).GetMethod("HasGuardSize",S).Invoke(null,new object[]{h,size+8}),"Monitor detecta diferença de tamanho");Assert(bitmap.height==(info.color!=IntPtr.Zero?size:size*2),"Altura carregada "+name);}
   finally{if(info.color!=IntPtr.Zero)DeleteObject(info.color);if(info.mask!=IntPtr.Zero)DeleteObject(info.mask);}
  }
  static void Assert(bool value,string message){checks++;if(!value)throw new Exception(message);}
