@@ -1,57 +1,70 @@
-# Cursor Cores — ajuste de tamanhos para Windows
+# Cursor Cores para Windows
 
-Atualização do projeto **Cursor Cores**, com 13 formatos, cores personalizadas e uma escala de tamanhos mais gradual.
+Aplicativo portátil para escolher **formato, cor e tamanho do cursor**, com prévia e restauração da configuração anterior.
 
-O seletor anterior pulava de **24 para 48 px**, dobrando o tamanho. Agora oferece **24, 32, 40, 48, 56 e 64 px**. Configurações novas começam em **32 px**; preferências salvas anteriormente continuam com o valor exato escolhido.
+## Baixar o programa atualizado
 
-## Imagens
+Abra a [versão mais recente](https://github.com/poajefersonld-1983/cursor-cores/releases/latest) e baixe **Cursor Cores.exe** ou o pacote ZIP completo. O executável contém os cursores e o monitor; não precisa da pasta `Base` para funcionar. Requer .NET Framework 4.x no Windows.
 
-![Interface WinForms em teste](docs/imagens/interface-windows-teste.png)
+Para atualizar a versão que você já usa:
+
+1. Feche a janela antiga e encerre o monitor pelo ícone Cursor Cores na bandeja.
+2. Substitua seu `Cursor Cores.exe` pelo novo arquivo baixado.
+3. Abra o novo programa, escolha **32 ou 40 px** e clique em **Aplicar**.
+
+Também há um instalador opcional no pacote: `Instalar-Atualizacao.ps1`. Ele instala para o usuário atual, atualiza o atalho do menu Iniciar e preserva as preferências e backups. Não precisa de administrador. Antes de usá-lo, extraia o ZIP completo, mantendo o script ao lado do executável.
+
+## O ajuste dos tamanhos
+
+A versão anterior oferecia 24, 48 e 64 px: o primeiro salto dobrava o tamanho. Agora há **24, 32, 40, 48, 56 e 64 px**, em passos de 8 px.
+
+Configurações novas começam em 32 px. Preferências antigas mantêm o valor escolhido, por isso quem já usava 24 px deve selecionar 32 ou 40 px para aumentar o cursor.
+
+![Interface do aplicativo no Windows](docs/imagens/interface-windows-teste.png)
 
 ![Comparação dos seis tamanhos](docs/imagens/comparacao-tamanhos.png)
 
-As imagens são geradas pelo próprio código C#/WinForms durante os testes. A aparência das bordas da janela depende do tema do Windows.
+As imagens são geradas pelo próprio programa durante os testes nativos Windows. A aparência das bordas da janela pode variar conforme o tema do sistema.
 
-## Atualizar seu projeto Windows existente
+## Recursos
 
-Este repositório contém os fontes revisados e um atualizador para sua pasta original. O monitor de persistência original (`CursorPersistence.cs`) e o compilador original (`compilar.ps1`) devem estar nessa pasta. Eles não foram recuperados do Drive nesta sessão. Por isso, **não é distribuído aqui um novo executável de produção**.
+- Treze formatos: Clássica, Moderna, Compacta, Alongada, Larga, Contorno, Chevron, Triângulo, Diamante, Mira, Círculo, Gota e Computer Use.
+- Dez cores predefinidas e escolha de cor personalizada.
+- Prévia pelo mesmo renderizador usado para gerar o ponteiro aplicado.
+- Persistência da cor, formato e tamanho escolhidos.
+- Monitor na bandeja para reaplicar o tamanho quando o Windows recarregar os cursores.
+- Monitor com instância única por usuário e inicialização no próximo login após aplicar.
+- Respeito a cursores temporariamente ocultos: o monitor não chama ShowCursor nem tenta revelá-los.
+- **Restaurar anterior** recupera a configuração salva antes da primeira aplicação e desativa o monitor.
 
-1. Baixe e extraia este repositório.
-2. Feche a janela Cursor Cores e encerre o monitor pelo ícone da bandeja.
-3. No PowerShell, dentro da pasta extraída, execute:
+Dados e temas gerados ficam em `%LOCALAPPDATA%\CursorCores`. Os formatos dos arquivos de preferências e backups da versão anterior foram mantidos. O monitor desta versão é uma implementação nova, incluída no repositório completo; o módulo original não pôde ser recuperado do Drive.
 
-```powershell
-.\Atualizar.ps1 -PastaProjeto 'C:\Projetos\Cursor Cores'
-```
+A função de agitar para ampliar não faz parte deste aplicativo. Aplicativos e páginas que desenham um cursor próprio podem manter o próprio desenho.
 
-Troque o caminho pela pasta original, que contém `CursorCores.cs`, `PointerStyles.cs`, `CursorPersistence.cs`, `compilar.ps1` e `Base`.
+## Compilar e testar
 
-O atualizador faz backup, modifica os trechos de seleção de tamanho e usa o compilador que já existe no seu projeto. Ele preserva os outros trechos do programa e o monitor. Em caso de falha, restaura os fontes e o executável anterior. Depois, abra o novo `Cursor Cores.exe` e experimente **32 ou 40 px**.
-
-Para revisar o ajuste antes de aplicá-lo, veja [CursorCores.cs](CursorCores.cs) e [ALTERACOES.md](ALTERACOES.md). Os arquivos C# na raiz representam a cópia do projeto disponível para esta atualização; o script aplica o ajuste diretamente ao fonte existente para preservar outras mudanças que você já tenha feito.
-
-## O que foi alterado
-
-- Uma lista única com os seis tamanhos evita divergências entre prévia, aplicação e preferências.
-- A prévia continua usando o mesmo renderizador do ponteiro aplicado.
-- Preferências são restauradas pelo número de pixels, preservando os valores antigos de 24, 48 e 64 px.
-- A verificação de cursores contempla os seis tamanhos, inclusive os intermediários.
-- Os desenhos, cores e a lógica de persistência do projeto original permanecem sob controle dos fontes originais.
-
-O tamanho indicado é a tela da imagem do cursor, incluindo a margem transparente. O desenho visível ocupa parte dessa tela; 32 e 40 px oferecem opções intermediárias sem mudar as proporções dos formatos.
-
-## Testes
-
-No Windows com .NET Framework 4:
+A pasta `Base` é necessária apenas para compilar:
 
 ```powershell
+.\compilar.ps1
 .\tests\Testar.ps1
 ```
 
-Os testes verificam as seis opções, o padrão de 32 px, a restauração das preferências, os 13 formatos em três cores e as dimensões/hotspots dos cursores estáticos e dos quadros animados. No Windows também usam o carregador nativo de cursores e conferem as dimensões efetivamente carregadas. Não alteram o cursor ativo nem as configurações do usuário.
+O script usa o compilador .NET Framework do Windows e incorpora os cursores ao executável. Os testes verificam a interface, o padrão de 32 px, preferências antigas, os 13 desenhos em três cores, quadros animados e dimensões efetivamente carregadas pelo Windows. Também verificam o leitor de preferências do monitor e executam as verificações do `.exe` completo em uma pasta temporária, sem arquivos externos.
 
-`tests/PersistenceTestStub.cs` é usado **somente** no executável de testes. Ele lança erro se alguém tentar executar funções do monitor. Nunca deve substituir `CursorPersistence.cs` nem ser usado para compilar o aplicativo de produção.
+O teste automatizado não altera o cursor ativo. Os resultados ficam em [verificacao](verificacao) e no [GitHub Actions](https://github.com/poajefersonld-1983/cursor-cores/actions).
+
+Comandos de diagnóstico, sem aplicar cursores:
+
+```powershell
+& '.\Cursor Cores.exe' --verify
+& '.\Cursor Cores.exe' --test-persistence
+```
+
+`--verify` valida 102 arquivos usando o carregador nativo. `--test-persistence` verifica os seis tamanhos no leitor do monitor. `--stop-guard` encerra o monitor e desativa sua inicialização automática.
+
+O script `Atualizar.ps1` continua disponível para aplicar apenas o ajuste de tamanhos a uma pasta de fontes anterior, usando o monitor e o compilador que já existam nela. Para instalar a versão completa publicada aqui, prefira o novo executável.
 
 ## Base visual
 
-Os arquivos em `Base/` pertencem ao **Bibata Modern Amber v2.0.6**, de [ful1e5](https://github.com/ful1e5/Bibata_Cursor), com licença [GPL-3.0](LICENSE-Bibata). Os desenhos personalizados foram preservados de `PointerStyles.cs` do projeto Cursor Cores do usuário.
+Bibata Modern Amber v2.0.6, de [ful1e5](https://github.com/ful1e5/Bibata_Cursor), com licença em [LICENSE-Bibata](LICENSE-Bibata). Os desenhos personalizados foram preservados do projeto Cursor Cores do usuário.

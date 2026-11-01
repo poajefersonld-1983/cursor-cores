@@ -1,9 +1,11 @@
-# Ajuste de tamanhos — 1º de novembro de 2026
+# Versão de 1º de novembro de 2026
 
-O problema era a sequência de 24, 48 e 64 px. O primeiro salto correspondia a 100% de aumento. Foram acrescentados 32, 40 e 56 px, formando uma sequência com incrementos de 8 px.
+- Tamanhos 24, 32, 40, 48, 56 e 64 px; padrão de 32 px em configurações novas.
+- Lista única para interface, prévia, aplicação, preferências e verificação.
+- Preferências antigas de 24, 48 e 64 px preservadas pelo valor em pixels.
+- Executável portátil com recursos de cursores e monitor incorporados.
+- Monitor de persistência implementado e incluído integralmente no repositório. A nova implementação mantém os formatos de backup/preferências originais, evita instâncias duplicadas por usuário, oferece controle pela bandeja e respeita cursores ocultos.
+- Instalador opcional por usuário, que encerra as instâncias antigas da própria conta e atualiza o atalho.
+- Testes nativos Windows da interface, imagens, hotspots, dimensões carregadas, leitor do monitor e executável isolado de arquivos externos.
 
-O novo padrão de 32 px só se aplica quando não há preferência salva. Uma preferência de 24 px continua em 24 px até o usuário selecionar outro tamanho.
-
-A lista é compartilhada pela interface, prévia, aplicação, leitura de preferências e verificação. Não foram modificadas as coordenadas dos 13 desenhos nem as cores predefinidas.
-
-O código original do monitor não está neste repositório. O atualizador utiliza o monitor e o script de compilação que já existem na pasta Windows original, incluindo eventuais listas antigas de tamanhos presentes no monitor. Nenhum executável de produção compilado com um monitor fictício é distribuído.
+O módulo original do monitor estava indisponível; ele não foi apresentado como se tivesse sido recuperado. A implementação nova está em `CursorPersistence.cs` para revisão.
