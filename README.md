@@ -4,7 +4,7 @@ Aplicativo portátil para escolher **formato, cor e tamanho do cursor**, com pr�
 
 ## Baixar o programa atualizado
 
-Abra a [versão mais recente](https://github.com/poajefersonld-1983/cursor-cores/releases/latest) e baixe **Cursor Cores.exe** ou o pacote ZIP completo. O executável contém os cursores e o monitor; não precisa da pasta `Base` para funcionar. Requer .NET Framework 4.x no Windows.
+Abra a [versão mais recente](https://github.com/poajefersonld-1983/cursor-cores/releases/latest) e baixe **Cursor.Cores.exe** ou o pacote ZIP completo. Dentro do ZIP, o arquivo se chama `Cursor Cores.exe`. O executável contém os cursores e o monitor; não precisa da pasta `Base` para funcionar. Requer .NET Framework 4.x no Windows.
 
 Para atualizar a versão que você já usa:
 

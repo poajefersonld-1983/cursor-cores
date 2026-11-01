@@ -5,7 +5,7 @@ $origem = Join-Path $PSScriptRoot 'Cursor Cores.exe'
 if (-not (Test-Path -LiteralPath $origem)) { throw 'Extraia o pacote completo: Cursor Cores.exe deve estar ao lado deste instalador.' }
 $sid = [Security.Principal.WindowsIdentity]::GetCurrent().User.Value
 # Stop only this application's processes owned by the current Windows account.
-foreach ($processo in Get-CimInstance Win32_Process -Filter "Name='Cursor Cores.exe'") {
+foreach ($processo in Get-CimInstance Win32_Process -Filter "Name='Cursor Cores.exe' OR Name='Cursor.Cores.exe'") {
     $dono = Invoke-CimMethod -InputObject $processo -MethodName GetOwnerSid
     if ($dono.Sid -eq $sid) { Stop-Process -Id $processo.ProcessId -Force -ErrorAction Stop }
 }
@@ -20,7 +20,7 @@ $monitorAtivo = $false
 try {
     foreach ($nome in $startup.GetValueNames()) {
         $valor = [string]$startup.GetValue($nome)
-        if ($nome -eq 'CursorCores' -or $valor -match '(?i)Cursor\s*Cores\.exe"?\s+--guard') {
+        if ($nome -eq 'CursorCores' -or $valor -match '(?i)Cursor[ .]*Cores\.exe"?\s+--guard') {
             $monitorAtivo = $true
             $startup.DeleteValue($nome,$false)
         }
