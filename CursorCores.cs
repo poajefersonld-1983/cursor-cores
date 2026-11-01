@@ -25,7 +25,7 @@ partial class CursorCores : Form {
  static string[] labels={"Roxo","Azul","Ciano","Verde","Amarelo","Laranja","Vermelho","Rosa","Branco","Preto","Outra cor..."};
  static Color[] palette={Color.FromArgb(155,89,255),Color.RoyalBlue,Color.Turquoise,Color.LimeGreen,Color.Gold,Color.DarkOrange,Color.Crimson,Color.HotPink,Color.White,Color.Black};
  CursorCores(){
-  Text="Cursor Cores"; ClientSize=new Size(430,420); FormBorderStyle=FormBorderStyle.FixedSingle; MaximizeBox=false; StartPosition=FormStartPosition.CenterScreen; Font=new Font("Segoe UI",10); BackColor=Color.FromArgb(245,246,250);
+  Text="Cursor Cores · v1.1.0"; ClientSize=new Size(430,420); FormBorderStyle=FormBorderStyle.FixedSingle; MaximizeBox=false; StartPosition=FormStartPosition.CenterScreen; Font=new Font("Segoe UI",10); BackColor=Color.FromArgb(245,246,250);
   Controls.Add(new Label{Text="Seu cursor, do seu jeito",Location=new Point(24,20),Size=new Size(380,32),Font=new Font("Segoe UI",17,FontStyle.Bold)});
   Controls.Add(new Label{Text="Cor",Location=new Point(24,75),AutoSize=true}); colors.SetBounds(24,100,220,30);colors.DropDownStyle=ComboBoxStyle.DropDownList;colors.Items.AddRange(labels);Controls.Add(colors);
   Controls.Add(new Label{Text="Tamanho",Location=new Point(24,145),AutoSize=true});sizes.SetBounds(24,170,220,30);sizes.DropDownStyle=ComboBoxStyle.DropDownList;foreach(int size in SupportedSizes)sizes.Items.Add(size+" px");sizes.SelectedIndex=Array.IndexOf(SupportedSizes,DefaultSize);Controls.Add(sizes);

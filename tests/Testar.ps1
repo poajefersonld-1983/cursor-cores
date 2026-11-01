@@ -9,7 +9,7 @@ try {
     if ($erros.Count -gt 0) { throw ($erros | Out-String) }
     $csc = Join-Path $env:WINDIR 'Microsoft.NET\Framework64\v4.0.30319\csc.exe'
     if (-not (Test-Path $csc)) { throw 'Compilador .NET Framework 4 não encontrado.' }
-    $argumentos = @('/nologo','/target:exe','/main:TestWindowsSizes','/reference:System.Drawing.dll','/reference:System.Windows.Forms.dll','/out:tests\WindowsSizeTests.exe','CursorCores.cs','PointerStyles.cs','CursorPersistence.cs','tests\TestWindowsSizes.cs')
+    $argumentos = @('/nologo','/target:exe','/main:TestWindowsSizes','/reference:System.Drawing.dll','/reference:System.Windows.Forms.dll','/out:tests\WindowsSizeTests.exe','CursorCores.cs','PointerStyles.cs','CursorPersistence.cs','AssemblyInfo.cs','tests\TestWindowsSizes.cs')
     foreach ($arquivo in Get-ChildItem Base -File) { $argumentos += ('/resource:'+$arquivo.FullName+',Base.'+$arquivo.Name) }
     & $csc $argumentos
     if ($LASTEXITCODE -ne 0) { throw 'Falha na compilação dos testes.' }
@@ -26,7 +26,7 @@ try {
             $p = Start-Process -FilePath $exeIsolado -ArgumentList $opcao -Wait -PassThru
             if ($p.ExitCode -ne 0) { throw "O executável de produção falhou em $opcao." }
         }
-        Get-Content (Join-Path $isolado 'verificacao.txt'),(Join-Path $isolado 'verificacao-persistencia.txt') | Set-Content verificacao\auto-verificacao-exe.txt -Encoding UTF8
+        Get-Content (Join-Path $isolado 'verificacao.txt'),(Join-Path $isolado 'verificacao-persistencia.txt') -Encoding UTF8 | Set-Content verificacao\auto-verificacao-exe.txt -Encoding UTF8
     } finally { Remove-Item -LiteralPath $isolado -Recurse -Force }
 
 } finally { Pop-Location }
