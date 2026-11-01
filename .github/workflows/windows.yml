@@ -18,5 +18,7 @@ jobs:
         with:
           name: verificacao-windows
           path: |
+            Cursor Cores.exe
+            tests/verificacao-persistencia.txt
             docs/imagens/*.png
             verificacao/tamanhos-windows.txt

@@ -3,3 +3,6 @@ tests/*.mdb
 verificacao/*.log
 Backup-tamanhos-*/
 windows-atualizacao/
+
+Cursor Cores.exe
+tests/verificacao-persistencia.txt

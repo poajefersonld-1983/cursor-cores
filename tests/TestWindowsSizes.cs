@@ -43,6 +43,8 @@ class TestWindowsSizes {
    }
    foreach(int size in sizes){File.WriteAllLines(Path.Combine(temp,"preferencias.txt"),new[]{Color.Gold.ToArgb().ToString(),size.ToString(),"12"});using(var f=(Form)Activator.CreateInstance(typeof(CursorCores),true))Assert((int)typeof(CursorCores).GetProperty("SelectedSize",I).GetValue(f,null)==size,"Preferência "+size);}
    File.Delete(Path.Combine(temp,"preferencias.txt"));
+   typeof(CursorCores).GetMethod("TestPersistence",S).Invoke(null,null);
+   Assert(File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"verificacao-persistencia.txt")),"Leitor de preferências do monitor");
    foreach(int size in sizes)for(int style=0;style<13;style++)foreach(Color color in new[]{Color.Gold,Color.Black,Color.FromArgb(155,89,255)})CheckCur(PointerStyles.CursorFile(color,size,style),size);
    foreach(int size in sizes)foreach(string name in (string[])typeof(CursorCores).GetField("files",S).GetValue(null)){
     byte[] b=(byte[])typeof(CursorCores).GetMethod("ConvertFile",S).Invoke(null,new object[]{name,Color.Gold,size});if(name.EndsWith(".cur"))CheckCur(b,size);else CheckAni(b,12,b.Length,size);
