@@ -1,0 +1,22 @@
+name: Testes Windows
+on:
+  push:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  tamanhos:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Compilar e testar interface e cursores no Windows
+        shell: powershell
+        run: .\tests\Testar.ps1
+      - name: Guardar imagens e resultados
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: verificacao-windows
+          path: |
+            docs/imagens/*.png
+            verificacao/tamanhos-windows.txt

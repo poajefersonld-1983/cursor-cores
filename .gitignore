@@ -1,0 +1,5 @@
+tests/*.exe
+tests/*.mdb
+verificacao/*.log
+Backup-tamanhos-*/
+windows-atualizacao/

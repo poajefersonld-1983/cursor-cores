@@ -1,0 +1,39 @@
+﻿CURSOR CORES
+
+Abra "Cursor Cores.exe", escolha formato, cor e tamanho e clique em Aplicar.
+São 13 formatos para o ponteiro principal: Clássica, Moderna, Compacta,
+Alongada, Larga, Contorno, Chevron, Triângulo, Diamante, Mira, Círculo, Gota
+e Computer Use (original). Este último seleciona preto com contorno branco;
+depois você pode escolher outra cor.
+A prévia usa o mesmo desenho aplicado. Os formatos são renderizados com
+suavização de bordas em oito vezes a resolução antes da redução final.
+Nos formatos Mira, Círculo e Diamante, o ponto de clique fica no centro;
+nos demais, fica na ponta superior. Os outros cursores mantêm a base Bibata.
+O aplicativo lembra a última cor, tamanho e formato aplicados.
+"Outra cor..." permite escolher qualquer cor, inclusive por valores RGB.
+Tamanhos disponíveis: 24, 32, 40, 48, 56 e 64 pixels.
+O padrão para uma configuração nova é 32 pixels. Preferências antigas são preservadas.
+Ao aplicar, um monitor leve fica na bandeja para manter o tamanho escolhido
+quando o Windows recarrega os cursores. A janela pode ser fechada.
+O monitor inicia no próximo login do usuário. Não precisa de administrador.
+Clique com o botão direito no ícone Cursor Cores da bandeja para abrir o app
+ou encerrar o monitor e desativar sua inicialização automática.
+Restaurar anterior também encerra o monitor e desativa sua inicialização.
+O monitor respeita cursores temporariamente invisíveis do Computer Use.
+
+"Restaurar anterior" recupera os cursores configurados antes da primeira
+aplicação deste aplicativo. O backup fica em %LOCALAPPDATA%\CursorCores.
+Os temas gerados ficam nesse mesmo diretório local para não depender da
+disponibilidade do Google Drive depois de aplicados.
+
+Base visual: Bibata Modern Amber v2.0.6, de ful1e5, copiado do projeto
+Cursor Fedora do usuário. Projeto original: https://github.com/ful1e5/Bibata_Cursor
+Todos os arquivos Base estão incorporados ao executável. Para usar ou copiar para outro computador Windows, basta levar Cursor Cores.exe. A pasta Base é necessária apenas para recompilar.
+
+O aplicativo altera apenas a cor e o tamanho. A função de agitar para ampliar
+continua sendo gerenciada pelo ShakeCursor do projeto Cursor Fedora.
+
+Código-fonte: CursorCores.cs, PointerStyles.cs e CursorPersistence.cs
+Compilar: execute compilar.ps1 no PowerShell.
+Verificação: execute o aplicativo com --verify. Gera e valida 102 arquivos
+usando o carregador de cursores do Windows, sem alterar o cursor ativo.
