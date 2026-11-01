@@ -1,2 +1,2 @@
-OK: 5097 verificações, 972 imagens/quadros; seis tamanhos e preferências antigas validados.
+OK: 5302 verificações, 972 imagens/quadros; seis tamanhos e preferências antigas validados.
 Carregador nativo Windows validado.

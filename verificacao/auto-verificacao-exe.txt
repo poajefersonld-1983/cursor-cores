@@ -1,0 +1,2 @@
+102 cursores roxos validados pelo Windows; registro não alterado.
+6 tamanhos validados pelo leitor do monitor; inicialização e cursores ativos não alterados.
