@@ -48,7 +48,7 @@ No Windows com .NET Framework 4:
 .\tests\Testar.ps1
 ```
 
-Os testes verificam as seis opções, o padrão de 32 px, a restauração das preferências, os 13 formatos em três cores e as dimensões/hotspots dos cursores estáticos e dos quadros animados. No Windows também usam o carregador nativo de cursores. Não alteram o cursor ativo nem as configurações do usuário.
+Os testes verificam as seis opções, o padrão de 32 px, a restauração das preferências, os 13 formatos em três cores e as dimensões/hotspots dos cursores estáticos e dos quadros animados. No Windows também usam o carregador nativo de cursores e conferem as dimensões efetivamente carregadas. Não alteram o cursor ativo nem as configurações do usuário.
 
 `tests/PersistenceTestStub.cs` é usado **somente** no executável de testes. Ele lança erro se alguém tentar executar funções do monitor. Nunca deve substituir `CursorPersistence.cs` nem ser usado para compilar o aplicativo de produção.
 
